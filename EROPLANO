@@ -1,0 +1,104 @@
+//* RAFAEL JOSHUA ALFAFARA //*
+//* BSIT - 1B //*
+
+import java.util.Scanner;
+
+public class AirplaneSeating {
+  public static void main(String[] args) {
+    char[][] seats = new char[13][6];
+    for (int i = 0; i < seats.length; i++) {
+      for (int j = 0; j < seats[i].length; j++) {
+        seats[i][j] = '*';
+      }
+    }
+
+    Scanner input = new Scanner(System.in);
+
+    while (true) {
+      System.out.println("Select Ticket Type: ");
+
+      System.out.println("1. First Class ");
+      System.out.println("2. Business Class ");
+      System.out.println("3. Economy Class ");
+      System.out.println("4. Exit ");
+      System.out.print("Choose A Ticket Type: ");
+      int choice = input.nextInt();
+
+      if (choice == 4) {
+        break;
+      }
+
+      System.out.print("Select Desired Seat: ");
+      String seatStr = input.next();
+      int row =
+          Integer.parseInt(seatStr.substring(0, seatStr.length() - 1)) - 1;
+      int seatIndex = seatStr.charAt(seatStr.length() - 1) - 'A';
+
+      if (seats[row][seatIndex] == 'X') {
+        System.out.println("Seat " + seatStr
+            + " is already occupied. Please Choose Another Seat.");
+        System.out.println("       "
+            + "A "
+            + "B "
+            + "C "
+            + "D "
+            + "E "
+            + "F ");
+        for (int i = 0; i < 13; i++) {
+          String rowNumber = String.format(
+              "ROW %2d ", i + 1); // %2d specifies a 2-digit integer
+          System.out.print(rowNumber);
+          for (int j = 0; j < 6; j++) {
+            if (seats[i][j] == 'X') {
+              System.out.print("X"
+                  + " ");
+            } else {
+              System.out.print("*"
+                  + " ");
+            }
+          }
+          System.out.println();
+        }
+
+      } else {
+        seats[row][seatIndex] = 'X';
+        String ticketType;
+        if (choice == 1) {
+          ticketType = "First Class";
+        } else if (choice == 2) {
+          ticketType = "Business Class";
+        } else {
+          ticketType = "Economy Class";
+        }
+        System.out.println("Boarding Pass");
+        System.out.println("==============");
+        System.out.println("Ticket Type: " + ticketType);
+        System.out.println("Seat: " + seatStr);
+        System.out.println();
+
+        System.out.println("       "
+            + "A "
+            + "B "
+            + "C "
+            + "D "
+            + "E "
+            + "F ");
+        for (int i = 0; i < 13; i++) {
+          String rowNumber = String.format(
+              "ROW %2d ", i + 1); // %2d specifies a 2-digit integer
+          System.out.print(rowNumber);
+          for (int j = 0; j < 6; j++) {
+            if (seats[i][j] == 'X') {
+              System.out.print("X"
+                  + " ");
+            } else {
+              System.out.print("*"
+                  + " ");
+            }
+          }
+          System.out.println();
+        }
+      }
+    }
+  }
+}
